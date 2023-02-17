@@ -6,13 +6,24 @@ discord: GermiCZ#2828
 """
 
 import random
+separator = (40 * '-')
 
+def generate_number():
+    numbers = list(range(0, 10))
+    random.shuffle(numbers)
+
+    number = numbers[:4]
+    while True:
+        if number[0] == 0:
+            random.shuffle(number)
+        else:
+            number = ''.join(map(str, number))
+            return number
 def main():
-    game_runs = True
-    guessing_number = str(random.randint(1000, 9999))
+    guessing_number = generate_number()
     attempts = 0
 
-    while game_runs:
+    while True:
         guessed_number = (input("Enter the number:"))
         attempts += 1
         bulls = 0
@@ -22,11 +33,11 @@ def main():
 
         if guessed_number == guessing_number:
             print(f"CG, you won! It took you {attempts} attempts!")
-            game_runs = False
+            break
 
         elif "exit" in guessed_number:
             print("We are sorry your are leaving, see you next time!")
-            game_runs = False
+            break
 
         else:
             for i in range(4):
