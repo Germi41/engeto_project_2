@@ -7,7 +7,7 @@ discord: GermiCZ#2828
 
 import random
 
-separator = (40 * '-')
+separator = (50 * '-')
 
 
 def generate_number():
@@ -43,8 +43,12 @@ def validate_input(guessed_number, guessing_number, attempts):
 def compare_input(guessed_number, guessing_number, attempts):
     bulls = 0
     cows = 0
-    if guessed_number == guessing_number:
-        print(f"CG, you won! It took you {attempts} attempts!")
+    if guessed_number == guessing_number and attempts == 1:
+        print(f"Unbelievable!! Your first attempt was correct!")
+        exit()
+
+    elif guessed_number == guessing_number:
+        print(f"Congratulations, you won! It took you {attempts} attempts!")
         exit()
     else:
         for i in range(4):
@@ -67,11 +71,17 @@ def compare_input(guessed_number, guessing_number, attempts):
 
 def main():
     guessing_number = generate_number()
-    attempts = 0
-    print(guessing_number)
+    attempts = 1
+    print(guessing_number)  # just for testing purposes
+
+    print("Hi there!")
+    print(separator, sep="\n")
+    print("I've generated a random 4 digit number for you.")
+    print("Let's play a bulls and cows game.")
+    print(separator, sep="\n")
 
     while True:
-        if attempts == 0:
+        if attempts == 1:
             guessed_number = (input("Enter the number: "))
             print(separator, sep="\n")
         else:
